@@ -21,14 +21,24 @@ export class ProductService {
       return this.http.get<PRODUCT>(this.url + id);    
    }
 
-   Edit(id:number){
+   Edit(id:number,Name:string, Price:string, Desc:string){
+      return this.http.put(this.url,{
+        name:Name+'_edited',
+        price:Price,
+        description:Desc
+      })
+      .subscribe(
+        (data:any) => {
+          console.log(data);
+          
+        });
   } 
   
-   Add(prodName:string, prodPrice:string, prodDesc:string){
+   Add(Name:string, Price:string, Desc:string){
     return this.http.post(this.url,{
-      name:prodName,
-      price:prodPrice,
-      description:prodDesc
+      name:Name,
+      price:Price,
+      description:Desc
     })
     .subscribe(
       (data:any) => {
